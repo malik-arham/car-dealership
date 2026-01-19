@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Browse our extensive inventory of premium vehicles. Filter by brand, price, model, and condition." />
+  <meta name="theme-color" content="#1a1a1a" />
+
+  <link rel="manifest" href="./manifest.json" />
+  <link rel="icon" type="image/png" href="./assets/icons/icon-192x192.png" />
+  <link rel="apple-touch-icon" href="./assets/icons/icon-192x192.png" />
+
+  <title>Browse Cars - DrivePro</title>
+  <link rel="stylesheet" href="./css/styles.css" />
+</head>
+<body id="cars-page">
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <nav>
+        <a href="./index.html" class="logo">
+          <img src="./assets/logo.svg" alt="DrivePro Logo" style="height: 50px; width: auto;">
+        </a>
+        <ul class="nav-links">
+          <li><a href="./index.html">Home</a></li>
+          <li><a href="./cars.html">Browse Cars</a></li>
+          <li><a href="./contact.html">Contact</a></li>
+        </ul>
+        <button class="install-btn" id="install-btn">📥 Install App</button>
+        <button class="menu-toggle">☰</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Page Header -->
+  <section class="hero" style="padding: 3rem 2rem;">
+    <div class="container">
+      <h1>Browse Our Inventory</h1>
+      <p>Explore our wide selection of quality vehicles</p>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <section class="featured-section">
+    <div class="container">
+      <!-- Filters -->
+      <div class="filters">
+        <div class="filter-group">
+          <label for="brand-filter">Brand</label>
+          <select id="brand-filter">
+            <option value="">All Brands</option>
+            <option value="BMW">BMW</option>
+            <option value="Mercedes">Mercedes</option>
+            <option value="Toyota">Toyota</option>
+            <option value="Honda">Honda</option>
+            <option value="Audi">Audi</option>
+            <option value="Hyundai">Hyundai</option>
+            <option value="Tesla">Tesla</option>
+            <option value="Mazda">Mazda</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label for="price-filter">Price Range</label>
+          <select id="price-filter">
+            <option value="">All Prices</option>
+            <option value="0-30000">Under $30,000</option>
+            <option value="30000-50000">$30,000 - $50,000</option>
+            <option value="50000-75000">$50,000 - $75,000</option>
+            <option value="75000-999999">Over $75,000</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label for="condition-filter">Condition</label>
+          <select id="condition-filter">
+            <option value="">All Conditions</option>
+            <option value="New">New</option>
+            <option value="Used">Used</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label for="fuel-filter">Fuel Type</label>
+          <select id="fuel-filter">
+            <option value="">All Fuel Types</option>
+            <option value="Petrol">Petrol</option>
+            <option value="Diesel">Diesel</option>
+            <option value="Hybrid">Hybrid</option>
+            <option value="Electric">Electric</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Cars Grid -->
+      <div class="cars-grid" id="cars-list"></div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>About DrivePro</h4>
+          <p>Your trusted partner in finding the perfect vehicle. Premium quality, competitive prices, and exceptional service.</p>
+        </div>
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="./index.html">Home</a></li>
+            <li><a href="./cars.html">Browse Cars</a></li>
+            <li><a href="./contact.html">Contact</a></li>
+            <li><a href="#privacy">Privacy Policy</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Contact Info</h4>
+          <ul>
+            <li><a href="tel:+1234567890">📞 +1 (234) 567-890</a></li>
+            <li><a href="mailto:sales@drivepro.com">📧 sales@drivepro.com</a></li>
+            <li><a href="https://wa.me/1234567890" target="_blank">💬 WhatsApp</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Follow Us</h4>
+          <ul>
+            <li><a href="#facebook">Facebook</a></li>
+            <li><a href="#instagram">Instagram</a></li>
+            <li><a href="#twitter">Twitter</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 DrivePro. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="./js/app.js"></script>
+</body>
+</html>

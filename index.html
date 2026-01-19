@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="DrivePro - Discover premium vehicles with our expert dealership team. Browse, compare, and connect with us today." />
+  <meta name="theme-color" content="#1a1a1a" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="DrivePro" />
+  <meta property="og:title" content="DrivePro - Premium Car Dealership" />
+  <meta property="og:description" content="Discover premium vehicles with our expert dealership team." />
+  <meta property="og:image" content="./assets/icons/icon-192x192.png" />
+  <meta property="og:url" content="https://yoursite.com" />
+
+  <link rel="manifest" href="./manifest.json" />
+  <link rel="icon" type="image/png" href="./assets/icons/icon-192x192.png" />
+  <link rel="apple-touch-icon" href="./assets/icons/icon-192x192.png" />
+  <link rel="shortcut icon" href="./assets/icons/icon-192x192.png" />
+
+  <title>DrivePro - Premium Car Dealership</title>
+  <link rel="stylesheet" href="./css/styles.css" />
+</head>
+<body id="home-page">
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <nav>
+        <a href="./index.html" class="logo">
+          <img src="./assets/logo.svg" alt="DrivePro Logo" style="height: 50px; width: auto;">
+        </a>
+        <ul class="nav-links">
+          <li><a href="./index.html">Home</a></li>
+          <li><a href="./cars.html">Browse Cars</a></li>
+          <li><a href="./contact.html">Contact</a></li>
+        </ul>
+        <button class="install-btn" id="install-btn">📥 Install App</button>
+        <button class="menu-toggle">☰</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <h1>Premium Vehicles Await You</h1>
+      <p>Discover our curated collection of luxury and reliable automobiles</p>
+      <a href="./cars.html" class="btn">Explore Our Inventory</a>
+    </div>
+  </section>
+
+  <!-- Featured Cars Section -->
+  <section class="featured-section">
+    <div class="container">
+      <div class="section-title">
+        <h2>Featured Vehicles</h2>
+        <p>Handpicked collection of our most popular vehicles</p>
+      </div>
+      <div class="cars-grid" id="featured-cars"></div>
+      <div style="text-align: center; margin-top: 2rem;">
+        <a href="./cars.html" class="btn btn-outline">View All Cars</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us Section -->
+  <section class="featured-section" style="background: var(--light-bg); padding: 3rem 0;">
+    <div class="container">
+      <div class="section-title">
+        <h2>Why Choose DrivePro?</h2>
+      </div>
+      <div class="cars-grid" style="margin-bottom: 0;">
+        <div class="car-card" style="cursor: default;">
+          <div class="car-image" style="background: linear-gradient(135deg, var(--secondary-color), #e67e22);">
+            <span style="font-size: 3rem;">✓</span>
+          </div>
+          <div class="car-info">
+            <h3>Verified Inventory</h3>
+            <p>All vehicles are thoroughly inspected and come with detailed reports</p>
+          </div>
+        </div>
+        <div class="car-card" style="cursor: default;">
+          <div class="car-image" style="background: linear-gradient(135deg, var(--accent-color), #2980b9);">
+            <span style="font-size: 3rem;">💰</span>
+          </div>
+          <div class="car-info">
+            <h3>Best Prices</h3>
+            <p>Competitive pricing and flexible financing options available</p>
+          </div>
+        </div>
+        <div class="car-card" style="cursor: default;">
+          <div class="car-image" style="background: linear-gradient(135deg, #27ae60, #16a085);">
+            <span style="font-size: 3rem;">🎁</span>
+          </div>
+          <div class="car-info">
+            <h3>After-Sales Support</h3>
+            <p>Comprehensive warranty and ongoing customer support</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section style="background: var(--primary-color); color: white; padding: 3rem 0; text-align: center; margin-top: 3rem;">
+    <div class="container">
+      <h2 style="color: white; margin-bottom: 1rem;">Ready to Find Your Perfect Car?</h2>
+      <p style="color: rgba(255, 255, 255, 0.9); margin-bottom: 1.5rem; font-size: 1.1rem;">
+        Browse our extensive inventory or contact our team for personalized assistance
+      </p>
+      <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+        <a href="./cars.html" class="btn">Browse Inventory</a>
+        <a href="./contact.html" class="btn btn-outline">Get in Touch</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>About DrivePro</h4>
+          <p>Your trusted partner in finding the perfect vehicle. Premium quality, competitive prices, and exceptional service.</p>
+        </div>
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="./index.html">Home</a></li>
+            <li><a href="./cars.html">Browse Cars</a></li>
+            <li><a href="./contact.html">Contact</a></li>
+            <li><a href="#privacy">Privacy Policy</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Contact Info</h4>
+          <ul>
+            <li><a href="tel:+1234567890">📞 +1 (234) 567-890</a></li>
+            <li><a href="mailto:sales@drivepro.com">📧 sales@drivepro.com</a></li>
+            <li><a href="https://wa.me/1234567890" target="_blank">💬 WhatsApp</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Follow Us</h4>
+          <ul>
+            <li><a href="#facebook">Facebook</a></li>
+            <li><a href="#instagram">Instagram</a></li>
+            <li><a href="#twitter">Twitter</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 DrivePro. All rights reserved. | Built as a Progressive Web App</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="./js/app.js"></script>
+</body>
+</html>

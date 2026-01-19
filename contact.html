@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Contact DrivePro for inquiries, test drives, and support. Call, WhatsApp, or visit our location." />
+  <meta name="theme-color" content="#1a1a1a" />
+
+  <link rel="manifest" href="./manifest.json" />
+  <link rel="icon" type="image/png" href="./assets/icons/icon-192x192.png" />
+  <link rel="apple-touch-icon" href="./assets/icons/icon-192x192.png" />
+
+  <title>Contact Us - DrivePro</title>
+  <link rel="stylesheet" href="./css/styles.css" />
+</head>
+<body id="contact-page">
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <nav>
+        <a href="./index.html" class="logo">
+          <img src="./assets/logo.svg" alt="DrivePro Logo" style="height: 50px; width: auto;">
+        </a>
+        <ul class="nav-links">
+          <li><a href="./index.html">Home</a></li>
+          <li><a href="./cars.html">Browse Cars</a></li>
+          <li><a href="./contact.html">Contact</a></li>
+        </ul>
+        <button class="install-btn" id="install-btn">📥 Install App</button>
+        <button class="menu-toggle">☰</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Page Header -->
+  <section class="hero" style="padding: 3rem 2rem;">
+    <div class="container">
+      <h1>Get in Touch</h1>
+      <p>We'd love to hear from you. Contact us for inquiries, test drives, or feedback.</p>
+    </div>
+  </section>
+
+  <!-- Contact Information -->
+  <section class="featured-section">
+    <div class="container">
+      <div class="contact-info">
+        <div class="info-card">
+          <div class="info-icon">📞</div>
+          <h3>Phone</h3>
+          <p>
+            <a href="tel:+1234567890" style="color: var(--secondary-color); text-decoration: none; font-weight: 600;">
+              +1 (234) 567-890
+            </a>
+          </p>
+          <p style="font-size: 0.9rem; color: var(--text-secondary);">Available Mon-Sat, 9AM-6PM</p>
+        </div>
+
+        <div class="info-card">
+          <div class="info-icon">💬</div>
+          <h3>WhatsApp</h3>
+          <p>
+            <a href="https://wa.me/1234567890" target="_blank" style="color: var(--secondary-color); text-decoration: none; font-weight: 600;">
+              Message Us
+            </a>
+          </p>
+          <p style="font-size: 0.9rem; color: var(--text-secondary);">Quick responses & inquiries</p>
+        </div>
+
+        <div class="info-card">
+          <div class="info-icon">📧</div>
+          <h3>Email</h3>
+          <p>
+            <a href="mailto:sales@drivepro.com" style="color: var(--secondary-color); text-decoration: none; font-weight: 600;">
+              sales@drivepro.com
+            </a>
+          </p>
+          <p style="font-size: 0.9rem; color: var(--text-secondary);">We'll respond within 24 hours</p>
+        </div>
+
+        <div class="info-card">
+          <div class="info-icon">📍</div>
+          <h3>Location</h3>
+          <p><strong>DrivePro Headquarters</strong></p>
+          <p style="font-size: 0.9rem; color: var(--text-secondary);">123 Auto Street, Dealership City, DC 12345</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Form -->
+  <section class="featured-section" style="background: var(--light-bg);">
+    <div class="container">
+      <div class="section-title">
+        <h2>Send us a Message</h2>
+        <p>Fill out the form below and we'll get back to you as soon as possible</p>
+      </div>
+
+      <div class="contact-form">
+        <div id="success-message" style="display: none; background: #27ae60; color: white; padding: 1rem; border-radius: 5px; margin-bottom: 1rem;">
+          ✓ Thank you for your message! We'll contact you soon.
+        </div>
+
+        <form id="contact-form">
+          <div class="form-group">
+            <label for="name">Full Name *</label>
+            <input type="text" id="name" name="name" required />
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email Address *</label>
+            <input type="email" id="email" name="email" required />
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Phone Number *</label>
+            <input type="tel" id="phone" name="phone" required />
+          </div>
+
+          <div class="form-group">
+            <label for="subject">Subject</label>
+            <input type="text" id="subject" name="subject" placeholder="e.g., Test Drive Request" />
+          </div>
+
+          <div class="form-group">
+            <label for="message">Message *</label>
+            <textarea id="message" name="message" required placeholder="Tell us what you're interested in..."></textarea>
+          </div>
+
+          <button type="submit" class="btn" style="width: 100%; cursor: pointer;">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Map Section -->
+  <section class="featured-section">
+    <div class="container">
+      <div class="section-title">
+        <h2>Our Location</h2>
+      </div>
+
+      <div class="map-container">
+        <!-- Embedded Google Map -->
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3024.1234567890!2d-77.0369!3d38.8951!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54eab584e432361b%3A0x1c466c4e34735a0!2sAuto%20Street!5e0!3m2!1sen!2sus!4v1234567890"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </div>
+
+      <div style="background: var(--light-bg); padding: 2rem; border-radius: 10px; margin-top: 2rem;">
+        <h3>Hours of Operation</h3>
+        <div style="display: grid; grid-template-columns: auto 1fr; gap: 1rem; margin-top: 1rem;">
+          <strong>Monday - Friday:</strong>
+          <span>9:00 AM - 6:00 PM</span>
+
+          <strong>Saturday:</strong>
+          <span>10:00 AM - 4:00 PM</span>
+
+          <strong>Sunday:</strong>
+          <span>Closed</span>
+
+          <strong>Holidays:</strong>
+          <span>By Appointment Only</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="featured-section" style="background: var(--light-bg);">
+    <div class="container">
+      <div class="section-title">
+        <h2>Frequently Asked Questions</h2>
+      </div>
+
+      <div style="max-width: 800px; margin: 0 auto;">
+        <div style="background: white; padding: 1.5rem; border-radius: 5px; margin-bottom: 1rem; box-shadow: var(--shadow);">
+          <h4 style="color: var(--secondary-color); margin-bottom: 0.5rem;">How can I schedule a test drive?</h4>
+          <p>You can schedule a test drive by calling us, using WhatsApp, or filling out our contact form. Our team will get back to you within 24 hours.</p>
+        </div>
+
+        <div style="background: white; padding: 1.5rem; border-radius: 5px; margin-bottom: 1rem; box-shadow: var(--shadow);">
+          <h4 style="color: var(--secondary-color); margin-bottom: 0.5rem;">Do you offer financing options?</h4>
+          <p>Yes, we offer flexible financing options in partnership with leading financial institutions. Contact our team for more details.</p>
+        </div>
+
+        <div style="background: white; padding: 1.5rem; border-radius: 5px; margin-bottom: 1rem; box-shadow: var(--shadow);">
+          <h4 style="color: var(--secondary-color); margin-bottom: 0.5rem;">What is your warranty policy?</h4>
+          <p>All vehicles come with a comprehensive warranty. The duration depends on the vehicle's age and condition. Check individual listings for details.</p>
+        </div>
+
+        <div style="background: white; padding: 1.5rem; border-radius: 5px; margin-bottom: 1rem; box-shadow: var(--shadow);">
+          <h4 style="color: var(--secondary-color); margin-bottom: 0.5rem;">Can I trade in my vehicle?</h4>
+          <p>Yes! We accept trade-ins. Bring your vehicle in for evaluation and we'll provide a competitive trade-in value.</p>
+        </div>
+
+        <div style="background: white; padding: 1.5rem; border-radius: 5px; box-shadow: var(--shadow);">
+          <h4 style="color: var(--secondary-color); margin-bottom: 0.5rem;">Is this site available offline?</h4>
+          <p>Yes! Install our app for offline access to browse vehicles, view details, and access contact information even without internet.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>About DrivePro</h4>
+          <p>Your trusted partner in finding the perfect vehicle. Premium quality, competitive prices, and exceptional service.</p>
+        </div>
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="./index.html">Home</a></li>
+            <li><a href="./cars.html">Browse Cars</a></li>
+            <li><a href="./contact.html">Contact</a></li>
+            <li><a href="#privacy">Privacy Policy</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Contact Info</h4>
+          <ul>
+            <li><a href="tel:+1234567890">📞 +1 (234) 567-890</a></li>
+            <li><a href="mailto:sales@drivepro.com">📧 sales@drivepro.com</a></li>
+            <li><a href="https://wa.me/1234567890" target="_blank">💬 WhatsApp</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Follow Us</h4>
+          <ul>
+            <li><a href="#facebook">Facebook</a></li>
+            <li><a href="#instagram">Instagram</a></li>
+            <li><a href="#twitter">Twitter</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 DrivePro. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="./js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="View detailed specifications, features, and contact options for our vehicles." />
+  <meta name="theme-color" content="#1a1a1a" />
+
+  <link rel="manifest" href="./manifest.json" />
+  <link rel="icon" type="image/png" href="./assets/icons/icon-192x192.png" />
+  <link rel="apple-touch-icon" href="./assets/icons/icon-192x192.png" />
+
+  <title>Car Details - DrivePro</title>
+  <link rel="stylesheet" href="./css/styles.css" />
+</head>
+<body id="car-detail-page">
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <nav>
+        <a href="./index.html" class="logo">
+          <img src="./assets/logo.svg" alt="DrivePro Logo" style="height: 50px; width: auto;">
+        </a>
+        <ul class="nav-links">
+          <li><a href="./index.html">Home</a></li>
+          <li><a href="./cars.html">Browse Cars</a></li>
+          <li><a href="./contact.html">Contact</a></li>
+        </ul>
+        <button class="install-btn" id="install-btn">📥 Install App</button>
+        <button class="menu-toggle">☰</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Car Detail Section -->
+  <section class="featured-section">
+    <div class="container">
+      <a href="./cars.html" style="display: inline-block; margin-bottom: 2rem; color: var(--secondary-color); text-decoration: none; font-weight: 600;">
+        ← Back to Inventory
+      </a>
+
+      <div class="detail-section">
+        <!-- Car Image -->
+        <div class="detail-image">
+          <img src="" alt="Car Image" style="width: 100%; height: auto; background: var(--light-bg); min-height: 300px; display: flex; align-items: center; justify-content: center; font-size: 4rem;" />
+        </div>
+
+        <!-- Car Details -->
+        <div class="detail-info">
+          <div class="detail-brand"></div>
+          <h1></h1>
+          <p></p>
+          <div class="car-price"></div>
+
+          <!-- Specifications -->
+          <h3>Specifications</h3>
+          <div class="specs-grid"></div>
+
+          <!-- Features -->
+          <h3 style="margin-top: 2rem;">Features</h3>
+          <ul class="features-list" style="list-style: none; margin-bottom: 2rem;"></ul>
+
+          <!-- Contact Section -->
+          <div class="contact-section">
+            <h3>Interested in this vehicle?</h3>
+            <p>Get in touch with our team for more information and to schedule a test drive.</p>
+            <div class="contact-buttons">
+              <button class="contact-btn call">📞 Call</button>
+              <button class="contact-btn whatsapp">💬 WhatsApp</button>
+              <button class="contact-btn email">📧 Email</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Additional Info -->
+      <div style="margin-top: 3rem; padding: 2rem; background: var(--light-bg); border-radius: 10px;">
+        <h3>Additional Information</h3>
+        <p>
+          All vehicles at DrivePro come with a comprehensive inspection report, warranty, and after-sales support. 
+          Feel free to contact our sales team to arrange a test drive or for any questions about this vehicle.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Cars Section -->
+  <section class="featured-section" style="background: var(--light-bg);">
+    <div class="container">
+      <div class="section-title">
+        <h2>You Might Also Like</h2>
+      </div>
+      <div class="cars-grid" id="related-cars"></div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>About DrivePro</h4>
+          <p>Your trusted partner in finding the perfect vehicle. Premium quality, competitive prices, and exceptional service.</p>
+        </div>
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="./index.html">Home</a></li>
+            <li><a href="./cars.html">Browse Cars</a></li>
+            <li><a href="./contact.html">Contact</a></li>
+            <li><a href="#privacy">Privacy Policy</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Contact Info</h4>
+          <ul>
+            <li><a href="tel:+1234567890">📞 +1 (234) 567-890</a></li>
+            <li><a href="mailto:sales@drivepro.com">📧 sales@drivepro.com</a></li>
+            <li><a href="https://wa.me/1234567890" target="_blank">💬 WhatsApp</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Follow Us</h4>
+          <ul>
+            <li><a href="#facebook">Facebook</a></li>
+            <li><a href="#instagram">Instagram</a></li>
+            <li><a href="#twitter">Twitter</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 DrivePro. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Load related cars
+    document.addEventListener('DOMContentLoaded', () => {
+      const params = new URLSearchParams(window.location.search);
+      const carId = parseInt(params.get('id'));
+      const relatedContainer = document.getElementById('related-cars');
+      
+      // Get 3 random cars excluding the current one
+      const related = carDatabase
+        .filter(car => car.id !== carId)
+        .sort(() => Math.random() - 0.5)
+        .slice(0, 3);
+      
+      if (relatedContainer) {
+        displayCars(related, relatedContainer);
+      }
+    });
+  </script>
+  <script src="./js/app.js"></script>
+</body>
+</html>

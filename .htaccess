@@ -1,0 +1,148 @@
+# .htaccess - Server configuration for DrivePro PWA
+# Place this file in the root directory of your hosting
+
+# Enable compression
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html
+  AddOutputFilterByType DEFLATE text/plain
+  AddOutputFilterByType DEFLATE text/xml
+  AddOutputFilterByType DEFLATE text/css
+  AddOutputFilterByType DEFLATE application/xml
+  AddOutputFilterByType DEFLATE application/xhtml+xml
+  AddOutputFilterByType DEFLATE application/rss+xml
+  AddOutputFilterByType DEFLATE application/javascript
+  AddOutputFilterByType DEFLATE application/x-javascript
+  AddOutputFilterByType DEFLATE application/json
+</IfModule>
+
+# Set proper cache expiration
+<IfModule mod_expires.c>
+  ExpiresActive On
+  
+  # Service worker should not be cached
+  <FilesMatch "service-worker\.js$">
+    ExpiresActive Off
+    Header set Cache-Control "no-cache, no-store, must-revalidate"
+  </FilesMatch>
+  
+  # Manifest should not be cached
+  <FilesMatch "manifest\.json$">
+    ExpiresActive Off
+    Header set Cache-Control "no-cache, no-store, must-revalidate"
+  </FilesMatch>
+  
+  # Cache HTML files for 1 hour
+  <FilesMatch "\.html?$">
+    ExpiresDefault "access plus 1 hour"
+    Header set Cache-Control "public, max-age=3600, must-revalidate"
+  </FilesMatch>
+  
+  # Cache CSS and JS for 1 week
+  <FilesMatch "\.(css|js)$">
+    ExpiresDefault "access plus 7 days"
+    Header set Cache-Control "public, max-age=604800"
+  </FilesMatch>
+  
+  # Cache images for 1 month
+  <FilesMatch "\.(png|gif|jpeg|jpg|svg|webp)$">
+    ExpiresDefault "access plus 1 month"
+    Header set Cache-Control "public, max-age=2592000"
+  </FilesMatch>
+  
+  # Cache fonts for 1 year
+  <FilesMatch "\.(ttf|otf|woff|woff2)$">
+    ExpiresDefault "access plus 1 year"
+    Header set Cache-Control "public, max-age=31536000"
+  </FilesMatch>
+</IfModule>
+
+# Enable mod_rewrite
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  
+  # Redirect HTTP to HTTPS (uncomment if using HTTPS)
+  # RewriteCond %{HTTPS} off
+  # RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+  
+  # Remove www prefix (uncomment if desired)
+  # RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+  # RewriteRule ^(.*)$ http://%1%{REQUEST_URI} [L,R=301]
+</IfModule>
+
+# Set proper MIME types
+<IfModule mod_mime.c>
+  AddType application/manifest+json .webmanifest
+  AddType application/x-web-app-manifest+json manifest.json
+  AddType image/png .png
+  AddType image/svg+xml .svg
+  AddType application/font-woff .woff
+  AddType application/font-woff2 .woff2
+</IfModule>
+
+# Enable ETag for caching
+<IfModule mod_etag.c>
+  FileETag MTime Size
+</IfModule>
+
+# Set proper headers for security and performance
+<IfModule mod_headers.c>
+  # Prevent MIME type detection
+  Header set X-Content-Type-Options "nosniff"
+  
+  # Enable XSS protection
+  Header set X-XSS-Protection "1; mode=block"
+  
+  # Clickjacking protection
+  Header set X-Frame-Options "SAMEORIGIN"
+  
+  # Allow referrer for external links
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+  
+  # Service Worker must be served with correct headers
+  <FilesMatch "service-worker\.js$">
+    Header set Cache-Control "no-cache, no-store, must-revalidate"
+    Header set Pragma "no-cache"
+    Header set Expires "0"
+  </FilesMatch>
+</IfModule>
+
+# SPA routing - serve index.html for non-existent routes
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+  
+  # If the requested file or folder does not exist
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  
+  # Don't rewrite API calls or special files
+  RewriteCond %{REQUEST_URI} !^/\.
+  RewriteCond %{REQUEST_URI} !^/.*\.xml$
+  
+  # Rewrite to index.html for HTML requests
+  RewriteCond %{REQUEST_URI} ^/[a-z0-9-/]*\.html$ [NC]
+  RewriteRule ^.*$ index.html [QSA,L]
+</IfModule>
+
+# 404 Error handling
+<IfModule mod_rewrite.c>
+  ErrorDocument 404 index.html
+</IfModule>
+
+# Prevent directory listing
+<IfModule mod_autoindex.c>
+  Options -Indexes
+</IfModule>
+
+# Deny access to sensitive files
+<FilesMatch "^\.">
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+</FilesMatch>
+
+<FilesMatch "(^#.*#|\.(bak|conf|dist|fla|in[ci]|log|psd|sh|sql|sw[op]|tar|tgz|txt|~)$)">
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+</FilesMatch>
