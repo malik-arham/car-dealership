@@ -166,9 +166,44 @@ const carDatabase = [
 document.addEventListener('DOMContentLoaded', () => {
   initializePWA();
   initializeEventListeners();
+  initializeURLBar();
   loadCarsData();
   setupFilterListeners();
 });
+
+// URL Bar functionality
+function initializeURLBar() {
+  const copyBtn = document.getElementById('copy-url-btn');
+  const installBtn = document.getElementById('url-install-btn');
+  const urlDisplay = document.getElementById('url-display');
+
+  if (!copyBtn || !installBtn) return;
+
+  // Copy URL functionality
+  copyBtn.addEventListener('click', () => {
+    const urlText = urlDisplay.textContent;
+    navigator.clipboard.writeText(urlText).then(() => {
+      const originalText = copyBtn.textContent;
+      copyBtn.textContent = '✓';
+      copyBtn.style.color = '#27ae60';
+      setTimeout(() => {
+        copyBtn.textContent = originalText;
+        copyBtn.style.color = 'white';
+      }, 2000);
+      console.log('✓ URL copied to clipboard');
+    }).catch(err => {
+      console.error('Failed to copy URL:', err);
+    });
+  });
+
+  // Install button in URL bar
+  installBtn.addEventListener('click', () => {
+    const mainInstallBtn = document.getElementById('install-btn');
+    if (mainInstallBtn) {
+      mainInstallBtn.click();
+    }
+  });
+}
 
 // PWA Initialization
 function initializePWA() {
