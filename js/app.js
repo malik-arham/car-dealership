@@ -181,62 +181,115 @@ function initializePWA() {
       })
       .catch((error) => {
         console.log('Service Worker registration info:', error.message);
-        // Show install button even if service worker fails (for testing)
-        showManualInstallButton();
       });
+  } else {
+    console.log('⚠ Service Worker not supported in this browser');
   }
 
-  // Handle install prompt
-  let deferredPrompt;
-  const installBtn = document.getElementById('install-btn');
+  // Handle install prompt - Initialize when DOM is ready
+  let deferredPrompt = null;
+  let isAppInstalled = false;
 
-  // Show install button after a short delay (for testing purposes)
-  setTimeout(() => {
-    if (installBtn && !deferredPrompt) {
-      // Always show button for demo purposes
-      installBtn.classList.add('show');
-      installBtn.textContent = '📥 Install App';
+  const initInstallButton = () => {
+    const installBtn = document.getElementById('install-btn');
+    
+    if (!installBtn) {
+      console.log('⚠ Install button not found in DOM');
+      return;
     }
-  }, 1000);
 
-  window.addEventListener('beforeinstallprompt', (e) => {
-    e.preventDefault();
-    deferredPrompt = e;
-    console.log('✓ Install prompt available');
-    if (installBtn) {
-      installBtn.classList.add('show');
-      installBtn.textContent = '📥 Install App';
-    }
-  });
+    console.log('✓ Install button found, initializing...');
 
-  if (installBtn) {
-    installBtn.addEventListener('click', async () => {
-      if (deferredPrompt) {
-        // Native install prompt
-        deferredPrompt.prompt();
-        const { outcome } = await deferredPrompt.userChoice;
-        console.log(`Install response: ${outcome}`);
-        deferredPrompt = null;
+    // Check if app is already in standalone mode
+    const checkIfInstalled = () => {
+      isAppInstalled = window.navigator.standalone === true || window.matchMedia('(display-mode: standalone)').matches;
+      if (isAppInstalled) {
+        console.log('✓ App running in standalone mode - install button hidden');
         installBtn.classList.remove('show');
       } else {
-        // Fallback: Show installation instructions
+        console.log('✓ App not installed - install button available');
+        // Only show if not already shown by beforeinstallprompt
+        if (!deferredPrompt) {
+          installBtn.classList.add('show');
+          installBtn.textContent = '📥 Install App';
+        }
+      }
+    };
+
+    // Check protocol
+    const isSecureContext = window.isSecureContext || location.protocol === 'https:' || location.hostname === 'localhost';
+    console.log(`Protocol: ${location.protocol}, Secure Context: ${isSecureContext}`);
+
+    checkIfInstalled();
+
+    // Listen for beforeinstallprompt event
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      console.log('✓ Install prompt available - native browser install supported');
+      installBtn.classList.add('show');
+      installBtn.textContent = '📥 Install App';
+    });
+
+    // Handle click - Always works, either native prompt or instructions
+    installBtn.addEventListener('click', async () => {
+      console.log('→ Install button clicked, deferredPrompt:', !!deferredPrompt);
+      
+      if (deferredPrompt) {
+        // Show native install prompt
+        try {
+          deferredPrompt.prompt();
+          const { outcome } = await deferredPrompt.userChoice;
+          console.log(`User response: ${outcome}`);
+          if (outcome === 'accepted') {
+            console.log('✓ App installation initiated');
+            deferredPrompt = null;
+          }
+        } catch (error) {
+          console.error('Error during installation:', error);
+          showInstallInstructions();
+        }
+      } else {
+        // Show fallback instructions
+        console.log('→ Showing installation instructions (no native prompt)');
         showInstallInstructions();
       }
     });
-  }
 
-  // Handle app installed
-  window.addEventListener('appinstalled', () => {
-    console.log('✓ PWA installed successfully');
-    deferredPrompt = null;
-    if (installBtn) {
+    // Handle app installed event
+    window.addEventListener('appinstalled', () => {
+      console.log('✓ PWA installed successfully');
+      isAppInstalled = true;
+      deferredPrompt = null;
       installBtn.classList.remove('show');
-    }
-  });
+    });
 
-  // Check if already installed
-  if (window.navigator.standalone === true) {
-    console.log('✓ App running in standalone mode');
+    // Listen for visibility change
+    document.addEventListener('visibilitychange', () => {
+      if (document.visibilityState === 'visible') {
+        checkIfInstalled();
+      }
+    });
+
+    // Check periodically if app status changed
+    setInterval(checkIfInstalled, 5000);
+
+    // Ensure button is visible on page load
+    if (!isAppInstalled && !deferredPrompt) {
+      console.log('✓ Showing install button on load (fallback)');
+      installBtn.classList.add('show');
+      installBtn.textContent = '📥 Install App';
+    }
+
+    console.log('✓ Install button initialization complete');
+  };
+
+  // Initialize when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initInstallButton);
+  } else {
+    // DOM is already loaded
+    initInstallButton();
   }
 }
 

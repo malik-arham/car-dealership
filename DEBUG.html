@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DrivePro - Debug PWA Status</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      padding: 2rem;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    h1 {
+      color: #1a1a1a;
+      margin-bottom: 1rem;
+      border-bottom: 3px solid #e74c3c;
+      padding-bottom: 0.5rem;
+    }
+    .status {
+      margin: 1rem 0;
+      padding: 1rem;
+      border-left: 4px solid #3498db;
+      background: #ecf0f1;
+      border-radius: 5px;
+    }
+    .status strong {
+      color: #2c3e50;
+    }
+    .status.success {
+      border-left-color: #27ae60;
+      background: #d5f4e6;
+    }
+    .status.error {
+      border-left-color: #e74c3c;
+      background: #fadbd8;
+    }
+    .status.warning {
+      border-left-color: #f39c12;
+      background: #fef5e7;
+    }
+    .button {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      background: #e74c3c;
+      color: white;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      font-weight: 600;
+      margin-top: 1rem;
+      transition: all 0.3s;
+    }
+    .button:hover {
+      background: #c0392b;
+      transform: translateY(-2px);
+    }
+    .code {
+      background: #2c3e50;
+      color: #ecf0f1;
+      padding: 1rem;
+      border-radius: 5px;
+      overflow-x: auto;
+      font-size: 0.9rem;
+      margin: 1rem 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🚗 DrivePro PWA Debug Console</h1>
+    
+    <div id="status-output"></div>
+
+    <button class="button" onclick="checkStatus()">Check PWA Status</button>
+    <button class="button" onclick="location.href='./index.html'">Go to Home</button>
+  </div>
+
+  <script>
+    function checkStatus() {
+      const output = document.getElementById('status-output');
+      output.innerHTML = '';
+
+      // Check secure context
+      const isSecure = window.isSecureContext || location.protocol === 'https:';
+      addStatus('Secure Context', isSecure, isSecure ? 'success' : 'warning');
+
+      // Check Service Worker support
+      const hasServiceWorker = 'serviceWorker' in navigator;
+      addStatus('Service Worker Support', hasServiceWorker, hasServiceWorker ? 'success' : 'error');
+
+      // Check standalone mode
+      const isStandalone = window.navigator.standalone === true || window.matchMedia('(display-mode: standalone)').matches;
+      addStatus('Standalone Mode', isStandalone, isStandalone ? 'success' : 'warning');
+
+      // Check install button
+      const installBtn = document.getElementById('install-btn');
+      addStatus('Install Button Found', !!installBtn, installBtn ? 'success' : 'error');
+
+      // Check manifest
+      const manifest = document.querySelector('link[rel="manifest"]');
+      addStatus('Manifest Found', !!manifest, manifest ? 'success' : 'error');
+
+      // Check protocol
+      addStatus('Protocol', location.protocol);
+      addStatus('Hostname', location.hostname);
+      addStatus('User Agent', navigator.userAgent.substring(0, 50) + '...');
+
+      // Add debugging tip
+      output.innerHTML += `
+        <div class="status warning">
+          <strong>💡 Debug Tip:</strong> 
+          Open the browser's Developer Tools (F12) and go to the "Console" tab to see detailed logs about the PWA installation process.
+        </div>
+        <div class="status">
+          <strong>Installation Requirements:</strong>
+          <ul style="margin-top: 0.5rem; margin-left: 1.5rem;">
+            <li>✓ Must be served over HTTPS or localhost</li>
+            <li>✓ Must have a valid manifest.json</li>
+            <li>✓ Must have a Service Worker registered</li>
+            <li>✓ Browser must support PWA (Chrome, Edge, Firefox, Safari)</li>
+          </ul>
+        </div>
+      `;
+    }
+
+    function addStatus(label, value, type = 'success') {
+      const output = document.getElementById('status-output');
+      const displayValue = typeof value === 'boolean' ? (value ? '✓ Yes' : '✗ No') : value;
+      const statusClass = type || 'success';
+      output.innerHTML += `<div class="status ${statusClass}"><strong>${label}:</strong> ${displayValue}</div>`;
+    }
+
+    // Auto-check on load
+    window.addEventListener('load', checkStatus);
+  </script>
+</body>
+</html>
