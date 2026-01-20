@@ -177,27 +177,37 @@ function initializeURLBar() {
   const installBtn = document.getElementById('url-install-btn');
   const urlDisplay = document.getElementById('url-display');
 
-  if (!copyBtn || !installBtn) return;
+  if (!copyBtn || !installBtn || !urlDisplay) {
+    console.log('⚠ URL bar elements not found');
+    return;
+  }
+
+  console.log('✓ URL bar initialized');
 
   // Copy URL functionality
-  copyBtn.addEventListener('click', () => {
-    const urlText = urlDisplay.textContent;
+  copyBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    const urlText = urlDisplay.value;
     navigator.clipboard.writeText(urlText).then(() => {
       const originalText = copyBtn.textContent;
-      copyBtn.textContent = '✓';
-      copyBtn.style.color = '#27ae60';
+      copyBtn.textContent = '✓ Copied!';
+      copyBtn.style.background = '#27ae60';
+      
       setTimeout(() => {
         copyBtn.textContent = originalText;
-        copyBtn.style.color = 'white';
+        copyBtn.style.background = '';
       }, 2000);
-      console.log('✓ URL copied to clipboard');
+      
+      console.log('✓ URL copied: ' + urlText);
     }).catch(err => {
       console.error('Failed to copy URL:', err);
     });
   });
 
   // Install button in URL bar
-  installBtn.addEventListener('click', () => {
+  installBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    console.log('→ URL bar install button clicked');
     const mainInstallBtn = document.getElementById('install-btn');
     if (mainInstallBtn) {
       mainInstallBtn.click();
