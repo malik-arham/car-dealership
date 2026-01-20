@@ -172,12 +172,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // PWA Initialization
 function initializePWA() {
-  // Register Service Worker
+  // Register Service Worker with scope
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker
-      .register('./service-worker.js')
+      .register('./service-worker.js', { scope: '/car-dealership/' })
       .then((registration) => {
-        console.log('✓ Service Worker registered:', registration);
+        console.log('✓ Service Worker registered with scope:', registration.scope);
       })
       .catch((error) => {
         console.log('Service Worker registration info:', error.message);

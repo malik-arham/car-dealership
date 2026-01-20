@@ -2,25 +2,14 @@
   "name": "DrivePro - Premium Car Dealership",
   "short_name": "DrivePro",
   "description": "Discover premium vehicles with DrivePro. Browse, compare, and connect with our expert dealership team.",
-  "start_url": "./index.html",
-  "scope": "./",
+  "start_url": "/car-dealership/index.html",
+  "scope": "/car-dealership/",
   "display": "standalone",
   "orientation": "portrait-primary",
   "background_color": "#ffffff",
   "theme_color": "#e74c3c",
   "categories": ["shopping", "business"],
-  "screenshots": [
-    {
-      "src": "./assets/icons/icon-192x192.png",
-      "sizes": "192x192",
-      "type": "image/png"
-    },
-    {
-      "src": "./assets/icons/icon-512x512.png",
-      "sizes": "512x512",
-      "type": "image/png"
-    }
-  ],
+  "icons": [
     {
       "src": "./assets/icons/icon-72x72.png",
       "sizes": "72x72",
@@ -67,24 +56,9 @@
       "src": "./assets/icons/icon-512x512.png",
       "sizes": "512x512",
       "type": "image/png",
-      "purpose": "any"
+      "purpose": "maskable"
     }
   ],
-  "screenshots": [
-    {
-      "src": "./assets/icons/screenshot-540x720.png",
-      "sizes": "540x720",
-      "type": "image/png",
-      "form_factor": "narrow"
-    },
-    {
-      "src": "./assets/icons/screenshot-1280x720.png",
-      "sizes": "1280x720",
-      "type": "image/png",
-      "form_factor": "wide"
-    }
-  ],
-  "categories": ["shopping", "business"],
   "shortcuts": [
     {
       "name": "Browse Cars",
