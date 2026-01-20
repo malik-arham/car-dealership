@@ -61,6 +61,7 @@ self.addEventListener('fetch', (event) => {
     caches.match(event.request).then((response) => {
       // Cache hit - return response
       if (response) {
+        console.log('📦 Served from cache:', event.request.url);
         return response;
       }
 
@@ -74,10 +75,15 @@ self.addEventListener('fetch', (event) => {
         const responseToCache = response.clone();
         caches.open(CACHE_NAME).then((cache) => {
           cache.put(event.request, responseToCache);
+          console.log('💾 Cached:', event.request.url);
         });
 
         return response;
       }).catch(() => {
+        console.log('📡 Network failed, returning offline page');
+        // Return a offline page if needed
+        return caches.match('./index.html');
+      });
         // Offline fallback - serve cached version or offline page
         if (event.request.destination === 'document') {
           return caches.match('./index.html');
